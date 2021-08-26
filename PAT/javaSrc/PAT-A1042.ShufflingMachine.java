@@ -1,20 +1,13 @@
 import java.util.Scanner;
 
-public class A1042 {
+public class Main {
     public static void main(String[] args) {
-        A1042Solutions a1042Solutions = new A1042Solutions();
-        a1042Solutions.wSolution();
-    }
-}
+        int N = 54;
+        char[] mp = {'S', 'H', 'C', 'D', 'J'};
+        int[] start = new int[N + 1];
+        int[] end = new int[N + 1];
+        int[] next = new int[N + 1];
 
-class A1042Solutions {
-    int N = 54;
-    char[] mp = {'S', 'H', 'C', 'D', 'J'};
-    int[] start = new int[N + 1];
-    int[] end = new int[N + 1];
-    int[] next = new int[N + 1];
-
-    public void wSolution() {
         int k = 0;
         Scanner scanner = new Scanner(System.in);
         k = scanner.nextInt();
@@ -29,9 +22,8 @@ class A1042Solutions {
             for (int i = 1; i <= N; i++) {
                 end[next[i]] = start[i];// 把第i个位置的牌的编号存于位置next[i]
             }
-            for (int i = 1; i <= N; i++) {
-                start[i] = end[i];// 把end数组赋值给start数组以供下次操作使用
-            }
+            // 把end数组赋值给start数组以供下次操作使用
+            System.arraycopy(end, 1, start, 1, N);
         }
 
         for (int i = 1; i <= N; i++) {
@@ -41,6 +33,5 @@ class A1042Solutions {
             start[i]--;
             System.out.printf("%c%d", mp[start[i] / 13], start[i] % 13 + 1);
         }
-
     }
 }
